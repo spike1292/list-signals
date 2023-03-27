@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "quicklist-signals": {
+    "list-signals": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -40,20 +40,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/quicklist-signals",
+            "outputPath": "dist/list-signals",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -87,10 +80,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "quicklist-signals:build:production"
+              "browserTarget": "list-signals:build:production"
             },
             "development": {
-              "browserTarget": "quicklist-signals:build:development"
+              "browserTarget": "list-signals:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -98,7 +91,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "quicklist-signals:build"
+            "browserTarget": "list-signals:build"
           }
         }
       }

@@ -7,4 +7,4 @@ import { routes } from "./app/app.routes";
 
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes), importProvidersFrom(DialogModule)],
-}).catch((err) => console.log(err));
+}).catch((err) => console.error(err));
