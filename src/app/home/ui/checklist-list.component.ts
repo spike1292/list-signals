@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { Checklist } from '../../shared/interfaces/checklist';
+import { CommonModule } from "@angular/common";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { Checklist } from "../../shared/interfaces/checklist";
 
 @Component({
   standalone: true,
   imports: [FormsModule, RouterModule, CommonModule],
-  selector: 'app-checklist-list',
+  selector: "app-checklist-list",
   template: `
     <ul>
       <li *ngFor="let checklist of checklists; trackBy: trackByFn">

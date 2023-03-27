@@ -22,7 +22,7 @@ export class ChecklistItemService {
     });
   }
 
-  getItemsByChecklistId(checklistId: string) {
+  getItemsByChecklistId(checklistId: string | null) {
     return computed(() =>
       this.checklistItems().filter((item) => item.checklistId === checklistId)
     );

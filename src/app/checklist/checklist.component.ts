@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
-import { Component, computed, signal } from "@angular/core";
+import { Component, inject, Signal, signal } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, ParamMap, RouterModule } from "@angular/router";
 import { Observable } from "rxjs";
 import { ChecklistService } from "../shared/data-access/checklist.service";
 import { ChecklistItem } from "../shared/interfaces/checklist-item";
@@ -29,10 +29,14 @@ const fromObservable = (obs$: Observable<any>) => {
     ChecklistItemHeaderComponent,
     ChecklistItemListComponent,
     ModalComponent,
-    FormModalComponent
+    FormModalComponent,
+    RouterModule,
   ],
   selector: "app-checklist",
   template: `
+    <nav>
+      <a routerLink="/">Back</a>
+    </nav>
     <app-checklist-item-header
       [checklist]="checklist()"
       (addItem)="formModalIsOpen.set(true)"
@@ -63,26 +67,29 @@ const fromObservable = (obs$: Observable<any>) => {
   `,
 })
 export default class ChecklistComponent {
-  checklistItemForm = this.fb.nonNullable.group({
-    title: ["", Validators.required],
-  });
+  checklistItemForm;
+  items: Signal<ChecklistItem[]>;
 
   formModalIsOpen = signal(false);
   checklistItemIdBeingEdited = signal<string | null>(null);
 
-  params = fromObservable(this.route.paramMap);
+  params: Signal<ParamMap> = fromObservable(inject(ActivatedRoute).paramMap);
 
-  checklist = this.checklistService.getChecklistById(this.params().get("id"));
-  items = this.checklistItemService.getItemsByChecklistId(
+  checklist = inject(ChecklistService).getChecklistById(
     this.params().get("id")
   );
 
   constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private checklistService: ChecklistService,
+    fb: FormBuilder,
     private checklistItemService: ChecklistItemService
-  ) {}
+  ) {
+    this.items = checklistItemService.getItemsByChecklistId(
+      this.params().get("id")
+    );
+    this.checklistItemForm = fb.nonNullable.group({
+      title: ["", Validators.required],
+    });
+  }
 
   dismissModal() {
     this.formModalIsOpen.set(false);

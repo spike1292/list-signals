@@ -27,7 +27,7 @@ export class ChecklistService {
     return computed(() => this.checklists());
   }
 
-  getChecklistById(id: string) {
+  getChecklistById(id: string | null) {
     return computed(() => {
       const checklist = this.checklists().find(
         (checklist) => checklist.id === id
