@@ -9,15 +9,14 @@
  */
 
 import {
-  assertInInjectionContext,
   computed,
   DestroyRef,
   inject,
   SettableSignal,
   signal,
   Signal,
-} from '@angular/core';
-import { Observable } from 'rxjs';
+} from "@angular/core";
+import { Observable } from "rxjs";
 
 /**
  * Get the current value of an `Observable` as a reactive `Signal`.
@@ -69,7 +68,7 @@ export function fromObservable<T, U = never>(
   source: Observable<T>,
   initialValue?: U
 ): Signal<T | U> {
-  assertInInjectionContext(fromObservable);
+  // assertInInjectionContext(fromObservable);
 
   // Note: T is the Observable value type, and U is the initial value type. They don't have to be
   // the same - the returned signal gives values of type `T|U`.

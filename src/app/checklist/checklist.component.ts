@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject, Signal, signal } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap, RouterModule } from "@angular/router";
-import { Observable } from "rxjs";
+import { fromObservable } from "../from-observable";
 import { ChecklistService } from "../shared/data-access/checklist.service";
 import { ChecklistItem } from "../shared/interfaces/checklist-item";
 import { FormModalComponent } from "../shared/ui/form-modal.component";
@@ -10,17 +10,6 @@ import { ModalComponent } from "../shared/ui/modal.component";
 import { ChecklistItemService } from "./data-access/checklist-item.service";
 import { ChecklistItemHeaderComponent } from "./ui/checklist-item-header.component";
 import { ChecklistItemListComponent } from "./ui/checklist-item-list.component";
-
-// DO NOT USE THIS - this is just a temporary example
-// until the real fromObservable is implemented by Angular
-const fromObservable = (obs$: Observable<any>) => {
-  const signalRef = signal<any>(null);
-
-  // designed for maximum memory leaks
-  obs$.subscribe((value) => signalRef.set(value));
-
-  return signalRef;
-};
 
 @Component({
   standalone: true,
