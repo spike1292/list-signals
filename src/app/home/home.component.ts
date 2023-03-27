@@ -1,5 +1,11 @@
-import { Component, signal } from "@angular/core";
-import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Component, inject, signal } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { ChecklistService } from "../shared/data-access/checklist.service";
 import { Checklist } from "../shared/interfaces/checklist";
 import { FormModalComponent } from "../shared/ui/form-modal.component";
@@ -10,10 +16,10 @@ import { ChecklistListComponent } from "./ui/checklist-list.component";
   standalone: true,
   selector: "app-home",
   template: `
-    <h1>Quicklists</h1>
+    <h1>Angular signals stuff</h1>
     <button (click)="formModalIsOpen.set(true)">Add</button>
 
-    <h2>Your checklists</h2>
+    <h2>Mega super belangrijk lijstje:</h2>
     <app-checklist-list
       [checklists]="checklists()"
       (delete)="deleteChecklist($event)"
@@ -46,16 +52,20 @@ export default class HomeComponent {
   formModalIsOpen = signal(false);
   checklistIdBeingEdited = signal<string | null>(null);
 
-  checklists = this.checklistService.getChecklists();
+  checklists = inject(ChecklistService).getChecklists();
 
-  checklistForm = this.fb.nonNullable.group({
-    title: ["", Validators.required],
-  });
+  checklistForm: FormGroup<{
+    title: FormControl<string>;
+  }>;
 
   constructor(
     private fb: FormBuilder,
     private checklistService: ChecklistService
-  ) {}
+  ) {
+    this.checklistForm = this.fb.nonNullable.group({
+      title: ["", Validators.required],
+    });
+  }
 
   dismissModal() {
     this.formModalIsOpen.set(false);
