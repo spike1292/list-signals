@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, inject, Signal, signal } from "@angular/core";
+import { fromObservable } from "@angular/core/rxjs-interop";
 import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap, RouterModule } from "@angular/router";
-import { fromObservable } from "../from-observable";
 import { ChecklistService } from "../shared/data-access/checklist.service";
 import { ChecklistItem } from "../shared/interfaces/checklist-item";
 import { FormModalComponent } from "../shared/ui/form-modal.component";

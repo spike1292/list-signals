@@ -12,15 +12,15 @@ export class ChecklistService {
   constructor(
     private storageService: StorageService,
     private checklistItemService: ChecklistItemService
-  ) {}
+  ) {
+    effect(() => {
+      this.storageService.saveChecklists(this.checklists());
+    });
+  }
 
   load() {
     const checklists = this.storageService.loadChecklists();
     this.checklists.set(checklists);
-
-    effect(() => {
-      this.storageService.saveChecklists(this.checklists());
-    });
   }
 
   getChecklists() {

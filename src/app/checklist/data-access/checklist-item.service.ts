@@ -11,15 +11,15 @@ import {
 export class ChecklistItemService {
   private checklistItems = signal<ChecklistItem[]>([]);
 
-  constructor(private storageService: StorageService) {}
+  constructor(private storageService: StorageService) {
+    effect(() => {
+      this.storageService.saveChecklistItems(this.checklistItems());
+    });
+  }
 
   load() {
     const checklistItems = this.storageService.loadChecklistItems();
     this.checklistItems.set(checklistItems);
-
-    effect(() => {
-      this.storageService.saveChecklistItems(this.checklistItems());
-    });
   }
 
   getItemsByChecklistId(checklistId: string | null) {
