@@ -6,15 +6,15 @@
     "rxjs": "7.8.0",
     "tslib": "2.5.0",
     "zone.js": "0.13.0",
-    "@angular/cdk": "16.0.0-next.3",
-    "@angular/core": "16.0.0-next.4",
-    "@angular/forms": "16.0.0-next.4",
-    "@angular/common": "16.0.0-next.4",
-    "@angular/router": "16.0.0-next.4",
-    "@angular/compiler": "16.0.0-next.4",
-    "@angular/animations": "16.0.0-next.4",
-    "@angular/platform-browser": "16.0.0-next.4",
-    "@angular/platform-browser-dynamic": "16.0.0-next.4"
+    "@angular/cdk": "16.0.0-next.4",
+    "@angular/core": "16.0.0-next.6",
+    "@angular/forms": "16.0.0-next.6",
+    "@angular/common": "16.0.0-next.6",
+    "@angular/router": "16.0.0-next.6",
+    "@angular/compiler": "16.0.0-next.6",
+    "@angular/animations": "16.0.0-next.6",
+    "@angular/platform-browser": "16.0.0-next.6",
+    "@angular/platform-browser-dynamic": "16.0.0-next.6"
   },
   "scripts": {
     "ng": "ng",
@@ -25,9 +25,9 @@
     "e2e": "ng e2e"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "16.0.0-next.5",
-    "@angular/cli": "16.0.0-next.5",
-    "@angular/compiler-cli": "16.0.0-next.4",
-    "typescript": "~4.9.4"
+    "@angular-devkit/build-angular": "16.0.0-next.6",
+    "@angular/cli": "16.0.0-next.6",
+    "@angular/compiler-cli": "16.0.0-next.6",
+    "typescript": "~5.0.0"
   }
 }
